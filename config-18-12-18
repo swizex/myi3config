@@ -5,8 +5,66 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+# i3 gaps here...
+# Disable window titlebars entirely
+for_window [class="^.*"] border pixel 5
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer 15
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+# smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
 # custom stuff here, changing wallpaper
-exec_always --no-startup-id feh --bg-scale /home/swizex/Downloads/arch.png
+exec_always --no-startup-id feh --bg-scale /home/swizex/Pictures/haxor.jpg
 
 # custom wifi applet
 exec_always --no-startup-id nm-applet
@@ -23,13 +81,13 @@ exec_always --no-startup-id /home/swizex/.config/mypoly/launch.sh
 focus_follows_mouse no
 
 # adding binding for removing borders
-bindsym $mod+t border none
+#bindsym $mod+t border none
 # adding binding for adding borders back
-bindsym $mod+y border normal
+#bindsym $mod+y border normal
 
 # custom colors here
 # class                 border  backgr. text    indicator child_border
-client.focused          #000000 #000000 #ffffff #2e9ef4   #000000
+client.focused          #F62217 #F62217 #ffffff #F62217   #F62217
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -39,7 +97,7 @@ client.background       #ffffff
 
 set $mod Mod4
 #custom tabbed layout by default
-workspace_layout default
+#workspace_layout default
 
 # settings up floating mode for frequent apps i use...
 for_window [class="firefox"] floating enable
