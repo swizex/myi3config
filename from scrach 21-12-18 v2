@@ -27,7 +27,7 @@ width = 80%
 height = 25
 offset-x = 10%
 offset-y = 0
-radius = 4.0
+radius = 5.0
 background = ${colors.bar_background}
 foreground = ${colors.bar_foreground}
 module-margin = 0
@@ -36,12 +36,12 @@ font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10"
 font-2 = mono:pixelsize=10
 bottom = true
 
-modules-left = battery padding cpu padding tmp padding eth padding mem
+modules-left = padding battery padding cpu padding tmp padding eth padding mem
 modules-center = 
 modules-right = 
 
 tray-position = right
-tray-padding = 2
+tray-padding = 5
 tray-transparent = false
 tray-detached = false
 
@@ -52,7 +52,7 @@ width = 80%
 height = 25
 offset-x = 10%
 offset-y = 0
-radius = 4.0
+radius = 5.0
 background = ${colors.bar_background}
 foreground = ${colors.bar_foreground}
 module-margin = 0
@@ -79,12 +79,12 @@ interval = 0.5
 
 date = " %d/%m/%Y"
 
-time = %I:%M %p
+time =  %I:%M %p
 
 format-prefix = 
 format-prefix-foreground = ${colors.bar_foreground}
 format-underline = #0a6cf5
-label = %date% | %time%
+label = %date% %time%
 
 [module/cpu]
 type = internal/cpu
