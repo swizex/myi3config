@@ -16,7 +16,7 @@ exec_always —no-startup-id redshift-gtk
 exec_always variety
 
 # starting compton for window composition
-exec compton
+exec_always compton
 
 # starting conky (manjaro built-in for i3 ver)
 exec start_conky_live_solarized 
@@ -103,7 +103,7 @@ focus_follows_mouse no
 
 # custom colors here
 # class                 border  backgr. text    indicator child_border
-client.focused          #F62217 #F62217 #ffffff #F62217   #F62217
+client.focused          #ffe199 #ffe199 #ffffff #ffe199   #ffe199
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
