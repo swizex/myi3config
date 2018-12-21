@@ -1,0 +1,247 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+bar_background = #313131
+bar_foreground = #ffe199
+primary_color = #fff
+secondary_color = #fff3cd
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[settings]
+screenchange-reload = true
+
+[bar/bottom]
+override-redirect = true
+fixed-center = true
+width = 80%
+height = 25
+offset-x = 10%
+offset-y = 0
+radius = 4.0
+background = ${colors.bar_background}
+foreground = ${colors.bar_foreground}
+module-margin = 0
+font-0 = "Font Awesome 5 Free:style=Regular:pixelsize=10"
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10"
+font-2 = mono:pixelsize=10
+bottom = true
+
+modules-left = battery padding cpu padding tmp padding eth padding mem
+modules-center = 
+modules-right = 
+
+tray-position = right
+tray-padding = 2
+tray-transparent = false
+tray-detached = false
+
+[bar/example]
+override-redirect = true
+fixed-center = true
+width = 80%
+height = 25
+offset-x = 10%
+offset-y = 0
+radius = 4.0
+background = ${colors.bar_background}
+foreground = ${colors.bar_foreground}
+module-margin = 0
+font-0 = "Font Awesome 5 Free:style=Regular:pixelsize=10"
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=10"
+font-2 = mono:pixelsize=10
+bottom = false
+
+spacing = 1
+
+modules-left = i3 padding xwindow
+modules-center = date
+modules-right = backlight padding volume
+
+[module/xwindow]
+type = internal/xwindow
+format-padding = 4
+label-foreground = ${colors.bar_foreground}
+label =  %{B#4f4f4f}  %title:0:20:...%  %{B- -o -u}
+
+[module/date]
+type = internal/date
+interval = 0.5
+
+date = " %d/%m/%Y"
+
+time = %I:%M %p
+
+format-prefix = 
+format-prefix-foreground = ${colors.bar_foreground}
+format-underline = #0a6cf5
+label = %date% | %time%
+
+[module/cpu]
+type = internal/cpu
+
+interval = 0.5
+
+format = <label> <ramp-coreload>
+label =  %percentage%%
+
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/battery]
+type = internal/battery
+
+full-at = 96
+
+battery = BAT0
+adapter = AC0
+
+poll-interval = 5
+
+time-format = %H:%M
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+format-charging = <animation-charging> <label-charging>
+format-charging-foreground = #43f0cb
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = #f0a143
+
+format-full-foreground = #50f043
+
+format-charging-prefix = " "
+format-discharging-prefix = " "
+format-full-prefix = " "
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+enable-scroll = true
+
+format = <ramp> <label>
+label =   %percentage%%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+format-muted = <label-muted>
+label-volume = %percentage%%
+label-muted =   muted
+label-muted-foreground = #aaa
+format-volume-padding = 3
+format-muted-padding = 3
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-headphones-0 = 
+
+[module/padding]
+type = custom/text
+content = " "
+content-foreground = ${colors.bar_foreground}
+content-background = ${colors.bar_background}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = true
+
+strip-wsnumbers = true
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #0088CC
+
+label-unfocused-foreground = #555555
+label-unfocused-padding = 1
+
+label-visible-foregroud = #888888
+label-visible-padding = 1
+
+label-focused-foreground = #0088CC
+label-focused-padding = 2
+
+label-urgent-padding = 1
+
+label-dimmed-underline = ${BAR.background}
+label-focused-underline = #0088CC
+
+[module/tmp]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 80
+
+format = <ramp> <label>
+format-underline = #0088CC
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-foreground = ${colors.bar_foreground}
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary_color}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.bar_foreground}
+
+[module/eth]
+type = internal/network
+interface = wlp2s0
+interval = 0.5
+
+label-connected =  %upspeed%  %downspeed%
+label-connected-foreground = #BCF5A9
+
+label-disconnected =  
+label-disconnected-foreground = #FF0000
+
+[module/mem]
+type = internal/memory
+format = <label>
+label =  %gb_used% 
