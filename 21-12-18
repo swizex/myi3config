@@ -151,6 +151,8 @@ font pango:monospace 8
 # font, it doesn’t scale on retina/hidpi displays.
 
 # my custom shortcuts:
+# open ranger, binds F1 to ranber
+bindsym $mod+F1 exec xfce4-terminal -e ranger
 # open firefox, binds F2 to firefox
 bindsym $mod+F2 exec firefox
 # open pcmanfm, binds to F3 to pcmanfm
