@@ -19,7 +19,7 @@ exec_always variety
 exec_always compton
 
 # volume tray icon
-exec_always volumeicon
+exec volumeicon
 
 # xfce4 power manager
 exec_always xfce4-power-manager
