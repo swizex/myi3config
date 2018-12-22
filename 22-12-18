@@ -170,7 +170,7 @@ bindsym $mod+F5 exec kupfer
 # open ghostwriter, binds ghostwriter to F6
 bindsym $mod+F6 exec ghostwriter
 # rofi stuff, this one shows all open windows
-bindsym $mod+F7 exec rofi -show window
+bindsym $mod+Ctrl+w exec rofi -show window
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
